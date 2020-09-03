@@ -19,6 +19,9 @@ import {
 import {ContactVarejao} from '../models';
 import {ContactVarejaoRepository} from '../repositories';
 
+import {authenticate} from '@loopback/authentication';
+
+@authenticate('jwt')
 export class ContactVarejaoController {
   constructor(
     @repository(ContactVarejaoRepository)

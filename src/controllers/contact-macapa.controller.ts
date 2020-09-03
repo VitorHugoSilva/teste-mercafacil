@@ -19,6 +19,9 @@ import {
 import {ContactMacapa} from '../models';
 import {ContactMacapaRepository} from '../repositories';
 
+import {authenticate} from '@loopback/authentication';
+
+@authenticate('jwt')
 export class ContactMacapaController {
   constructor(
     @repository(ContactMacapaRepository)

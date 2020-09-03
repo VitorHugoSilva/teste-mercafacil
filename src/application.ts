@@ -1,3 +1,9 @@
+import {AuthenticationComponent} from '@loopback/authentication';
+import {
+  JWTAuthenticationComponent,
+  MyUserService,
+  UserServiceBindings,
+} from '@loopback/authentication-jwt';
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
 import {
@@ -11,6 +17,8 @@ import path from 'path';
 import {MySequence} from './sequence';
 
 export {ApplicationConfig};
+
+import {MysqlDataSource} from './datasources';
 
 export class MercafacilApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
@@ -40,5 +48,17 @@ export class MercafacilApplication extends BootMixin(
         nested: true,
       },
     };
+
+    // Mount authentication system
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
+    // Bind datasource
+    this.dataSource(MysqlDataSource, UserServiceBindings.DATASOURCE_NAME);
+
+    // ------------- END OF SNIPPET -------------
+    this.bind(UserServiceBindings.USER_SERVICE).toClass(MyUserService);
+    this.getBinding('repositories.UserRepository').tag('repository')
+    this.getBinding('repositories.UserCredentialsRepository').tag('repository')
   }
 }
