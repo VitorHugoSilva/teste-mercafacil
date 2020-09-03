@@ -1,7 +1,9 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
-export class ContactMacapa extends Entity {
+@model({settings: {
+
+  }})
+export class ContactVarejao extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -14,8 +16,7 @@ export class ContactMacapa extends Entity {
     required: true,
     jsonSchema: {
       minLength: 5,
-      maxLength: 200,
-      transform: ['toUpperCase']
+      maxLength: 100
     }
   })
   name: string;
@@ -24,24 +25,25 @@ export class ContactMacapa extends Entity {
     type: 'string',
     required: true,
     jsonSchema: {
-      maxLength: 20
+      minLength: 13,
+      maxLength: 13
     }
   })
   cellphone: string;
-
   // Define well-known properties here
 
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;
 
-  constructor(data?: Partial<ContactMacapa>) {
+
+  constructor(data?: Partial<ContactVarejao>) {
     super(data);
   }
 }
 
-export interface ContactMacapaRelations {
+export interface ContactVarejaoRelations {
   // describe navigational properties here
 }
 
-export type ContactMacapaWithRelations = ContactMacapa & ContactMacapaRelations;
+export type ContactVarejaoWithRelations = ContactVarejao & ContactVarejaoRelations;

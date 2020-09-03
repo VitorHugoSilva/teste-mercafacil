@@ -52,6 +52,8 @@
     "@loopback/rest-explorer": "^2.2.10",
     "@loopback/service-proxy": "^2.3.8",
     "loopback-connector-mysql": "^5.3.0",
+    "loopback-connector-postgresql": "^5.1.0",
+    "postgres": "^1.0.2",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

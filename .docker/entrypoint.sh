@@ -4,5 +4,6 @@ cd /home/node/app
 
 npm install -g nodemon
 npm install
-
-nodemon
+npm run build
+npm run migrate
+nodemon -L
