@@ -12,12 +12,20 @@ export class ContactMacapa extends Entity {
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      minLength: 5,
+      maxLength: 200,
+      transform: ['toUpperCase']
+    }
   })
   name: string;
 
   @property({
     type: 'string',
     required: true,
+    jsonSchema: {
+      maxLength: 20
+    }
   })
   cellphone: string;
 
